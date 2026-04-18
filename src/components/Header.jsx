@@ -13,9 +13,11 @@ const notifications = [
 const pageSuggestions = [
   { label: "Dashboard", path: "/" },
   { label: "Portfolio", path: "/portfolio" },
+  { label: "Compare", path: "/compare" },
   { label: "Market Trends", path: "/market-trends" },
   { label: "Inventory", path: "/inventory" },
   { label: "Products", path: "/inventory" },
+  { label: "Collaborate", path: "/collaboration" },
   { label: "Settings", path: "/settings" },
   { label: "Integrations", path: "/settings" },
   { label: "Help & Support", path: "/help" },

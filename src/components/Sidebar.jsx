@@ -1,13 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { LayoutDashboard, ShoppingBag, TrendingUp, Settings, HelpCircle, LogOut, ChevronRight, Wallet } from "lucide-react";
+import { LayoutDashboard, ShoppingBag, TrendingUp, Settings, HelpCircle, LogOut, ChevronRight, Wallet, GitCompareArrows, Users } from "lucide-react";
 import Logo from "./Logo";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/" },
   { icon: Wallet, label: "Portfolio", path: "/portfolio" },
+  { icon: GitCompareArrows, label: "Compare", path: "/compare" },
   { icon: TrendingUp, label: "Market Trends", path: "/market-trends" },
   { icon: ShoppingBag, label: "Inventory", path: "/inventory" },
+  { icon: Users, label: "Collaborate", path: "/collaboration" },
 ];
 
 const bottomItems = [

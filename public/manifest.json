@@ -1,0 +1,31 @@
+{
+  "name": "BizInsight Analytics",
+  "short_name": "BizInsight",
+  "description": "Business Analytics Dashboard with real-time crypto tracking and AI insights",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f6f1",
+  "theme_color": "#8a7a6b",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["business", "finance", "productivity"]
+}

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Plus, Trash2, RefreshCw, TrendingUp, TrendingDown, Search, X, Wallet, DollarSign, BarChart3, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { getLivePrices, searchCoins, TOP_COINS } from "../services/crypto";
+import { useCurrency } from "../context/CurrencyContext";
 import storage from "../services/storage";
 
 const PIE_COLORS = ["#8a7a6b", "#c9a96e", "#5b9a6f", "#7c6faa", "#c75c5c", "#4a90d9", "#d4845a", "#5bb89a"];
@@ -19,6 +20,7 @@ const CustomPieTooltip = ({ active, payload }) => {
 };
 
 export default function Portfolio() {
+  const { format: fmt, symbol: currSymbol } = useCurrency();
   const [holdings, setHoldings] = useState(() => storage.get("portfolio_holdings", []));
   const [prices, setPrices] = useState({});
   const [loading, setLoading] = useState(false);
@@ -194,9 +196,9 @@ export default function Portfolio() {
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-fade-in-up-delay-1">
             {[
-              { label: "Total Value", value: `$${totalValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}`, icon: DollarSign, color: "var(--accent)" },
-              { label: "Total Invested", value: `$${totalCost.toLocaleString(undefined, { maximumFractionDigits: 2 })}`, icon: Wallet, color: "var(--accent-gold)" },
-              { label: "Total P&L", value: `${totalPnl >= 0 ? "+" : ""}$${totalPnl.toLocaleString(undefined, { maximumFractionDigits: 2 })}`, icon: totalPnl >= 0 ? TrendingUp : TrendingDown, color: totalPnl >= 0 ? "var(--accent-green)" : "var(--accent-red)" },
+              { label: "Total Value", value: fmt(totalValue), icon: DollarSign, color: "var(--accent)" },
+              { label: "Total Invested", value: fmt(totalCost), icon: Wallet, color: "var(--accent-gold)" },
+              { label: "Total P&L", value: `${totalPnl >= 0 ? "+" : ""}${fmt(Math.abs(totalPnl))}`, icon: totalPnl >= 0 ? TrendingUp : TrendingDown, color: totalPnl >= 0 ? "var(--accent-green)" : "var(--accent-red)" },
               { label: "Return", value: `${totalPnlPct >= 0 ? "+" : ""}${totalPnlPct.toFixed(2)}%`, icon: BarChart3, color: totalPnlPct >= 0 ? "var(--accent-green)" : "var(--accent-red)" },
             ].map((card, i) => {
               const Icon = card.icon;

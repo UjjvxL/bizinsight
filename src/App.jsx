@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { CurrencyProvider } from "./context/CurrencyContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+import Onboarding from "./components/Onboarding";
 import Dashboard from "./pages/Dashboard";
 import MarketTrends from "./pages/MarketTrends";
 import Inventory from "./pages/Inventory";
@@ -10,6 +12,8 @@ import SettingsPage from "./pages/Settings";
 import HelpSupport from "./pages/HelpSupport";
 import SearchResults from "./pages/SearchResults";
 import Portfolio from "./pages/Portfolio";
+import Compare from "./pages/Compare";
+import Collaboration from "./pages/Collaboration";
 import LoginPage from "./pages/LoginPage";
 
 function ProtectedRoute({ children }) {
@@ -42,6 +46,8 @@ function AppLayout() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/compare" element={<Compare />} />
+              <Route path="/collaboration" element={<Collaboration />} />
               <Route path="/market-trends" element={<MarketTrends />} />
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/settings" element={<SettingsPage />} />
@@ -51,6 +57,7 @@ function AppLayout() {
           </div>
         </main>
       </div>
+      <Onboarding />
     </div>
   );
 }
@@ -58,18 +65,20 @@ function AppLayout() {
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/*" element={
-              <ProtectedRoute>
-                <AppLayout />
-              </ProtectedRoute>
-            } />
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
+      <CurrencyProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/*" element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </CurrencyProvider>
     </ThemeProvider>
   );
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
+import { useCurrency } from "../context/CurrencyContext";
 import { getReportConfig, saveReportConfig, prepareReportData, generateReportHTML, FREQUENCY_OPTIONS, DAY_OPTIONS } from "../services/reports";
 import { fetchGoogleSheet } from "../services/sheets";
+import { resetOnboarding } from "../components/Onboarding";
 import storage from "../services/storage";
-import { User, Bell, Palette, Shield, Globe, Save, Monitor, Sun, Moon, Link, FileSpreadsheet, Mail, Clock, Trash2, Database, Info, CheckCircle2, AlertCircle, Eye } from "lucide-react";
+import { User, Bell, Palette, Shield, Globe, Save, Monitor, Sun, Moon, Link, FileSpreadsheet, Mail, Clock, Trash2, Database, Info, CheckCircle2, AlertCircle, Eye, RotateCcw } from "lucide-react";
 
 const tabs = [
   { id: "profile", label: "Profile", icon: User },
@@ -20,6 +22,7 @@ const tabs = [
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const { user } = useAuth();
+  const { currency, setCurrency, currencies } = useCurrency();
   const [activeTab, setActiveTab] = useState("profile");
   const [saved, setSaved] = useState(false);
 
@@ -389,13 +392,20 @@ export default function SettingsPage() {
               </div>
               <div>
                 <label className="text-xs font-medium mb-1.5 block" style={{ color: "var(--text-secondary)" }}>Currency</label>
-                <select className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none" style={inputStyle} defaultValue="usd">
-                  <option value="usd">USD ($)</option>
-                  <option value="eur">EUR (€)</option>
-                  <option value="gbp">GBP (£)</option>
-                  <option value="inr">INR (₹)</option>
-                  <option value="jpy">JPY (¥)</option>
+                <select className="w-full px-4 py-2.5 rounded-xl border text-sm outline-none" style={inputStyle} value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}>
+                  {currencies.map((c) => <option key={c.code} value={c.code}>{c.code} ({c.symbol}) — {c.name}</option>)}
                 </select>
+                <p className="text-[11px] mt-1.5" style={{ color: "var(--text-muted)" }}>All prices across the app will convert to your selected currency</p>
+              </div>
+              <div className="pt-4" style={{ borderTop: "1px solid var(--border-light)" }}>
+                <h4 className="text-sm font-semibold mb-3" style={{ color: "var(--text-primary)" }}>Onboarding</h4>
+                <button onClick={() => { resetOnboarding(); flashSaved(); window.location.reload(); }}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all"
+                  style={{ borderColor: "var(--border-main)", color: "var(--text-primary)" }}>
+                  <RotateCcw className="w-4 h-4" /> Replay Welcome Tour
+                </button>
+                <p className="text-[11px] mt-1.5" style={{ color: "var(--text-muted)" }}>Show the guided onboarding tutorial again</p>
               </div>
               <button onClick={flashSaved} className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white" style={{ background: "linear-gradient(135deg, var(--gradient-from), var(--gradient-to))" }}>
                 <Save className="w-4 h-4" /> Save
