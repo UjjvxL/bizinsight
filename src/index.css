@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #f9f6f1;
+  --bg-surface: #ffffff;
+  --bg-surface-warm: #faf8f5;
+  --bg-hover: #f3ede6;
+  --bg-input: #faf8f5;
+  --text-primary: #2d2a26;
+  --text-secondary: #7d7469;
+  --text-muted: #b5a898;
+  --border-main: #e8e2d9;
+  --border-light: #f0ebe4;
+  --accent: #8a7a6b;
+  --accent-dark: #665a4e;
+  --accent-gold: #c9a96e;
+  --accent-green: #5b9a6f;
+  --accent-red: #c75c5c;
+  --sidebar-bg: #ffffff;
+  --header-bg: rgba(255,255,255,0.8);
+  --gradient-from: #8a7a6b;
+  --gradient-to: #665a4e;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300 800;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjQ.woff2') format('woff2');
+  }
+
+  * {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-main); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+.animate-fade-in-up-delay-1 { animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0; }
+.animate-fade-in-up-delay-2 { animation: fadeInUp 0.5s ease-out 0.2s forwards; opacity: 0; }
+.animate-fade-in-up-delay-3 { animation: fadeInUp 0.5s ease-out 0.3s forwards; opacity: 0; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--border-light) 25%, var(--bg-surface-warm) 50%, var(--border-light) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
