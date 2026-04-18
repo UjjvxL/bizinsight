@@ -1,101 +1,114 @@
-# BizInsight – Business Analytics Dashboard
+# 📊 BizInsight — Business Analytics Dashboard
 
-A modern, full-featured business analytics dashboard built with **React**, **Vite**, and **Tailwind CSS**. Visualize cryptocurrency market trends, manage product inventory, and generate professional reports — all in a sleek, themeable interface.
+> **A sleek, production-ready analytics dashboard** for solopreneurs, crypto investors, and small businesses. Track crypto portfolios, manage inventory, create custom KPIs, and get AI-powered business insights — all in one beautiful interface.
 
-![BizInsight Dashboard](https://img.shields.io/badge/React-18-blue) ![Vite](https://img.shields.io/badge/Vite-8-purple) ![Tailwind](https://img.shields.io/badge/TailwindCSS-4-cyan)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/UjjvxL/bizinsight)
 
-## ✨ Features
+---
 
-- **📊 Real-Time Data** — Live cryptocurrency prices from CoinGecko API + e-commerce data from FakeStore API
-- **🔍 Crypto Search** — Search any cryptocurrency and view interactive price charts with 7D/14D/30D/90D ranges
-- **🎨 3 Themes** — Beige (warm), Light (corporate blue), Dark (purple accents) — switch instantly
-- **📄 Export Reports** — Download dashboard data as CSV or generate professional branded PDF reports
-- **🔐 Authentication** — Firebase Auth with email/password and Google sign-in (demo mode included)
-- **📱 Responsive Design** — Works across desktop and tablet viewports
-- **⚡ Interactive Charts** — Area charts, pie charts, bar charts with tooltips and animations
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 💰 **Crypto Portfolio Tracker** | Add holdings (BTC, ETH, SOL...), track live prices, view P&L, set price alerts |
+| 📊 **Custom KPI Cards** | Add your own metrics — "Monthly Revenue: $24,500 ↑12.3%" |
+| 🤖 **AI-Powered Insights** | Smart analysis: "Bitcoin is up 13.3% — consider profit-taking" |
+| 📈 **Data Comparison** | Bitcoin vs Ethereum side-by-side, overlay or normalized % view |
+| 👥 **Team Collaboration** | Share dashboards via link, comment on metrics, invite team members |
+| 📤 **CSV Upload & Charting** | Upload any spreadsheet → auto-generates bar charts |
+| 🎨 **3 Premium Themes** | Beige (warm), Light (corporate), Dark (sleek) |
+| 💱 **Multi-Currency** | USD, EUR, GBP, INR, JPY — auto-detected from browser locale |
+| 📱 **PWA / Installable** | Add to phone home screen, check portfolio in 2 seconds |
+| 📧 **Scheduled Reports** | Configure daily/weekly/monthly email reports with preview |
+| 🏪 **Google Sheets Integration** | Connect published sheets for live data charts |
+| 🧭 **Onboarding Tutorial** | 8-step guided tour for first-time users |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18 + Vite
+- **Styling**: Tailwind CSS v4 + CSS Variables theming
+- **Charts**: Recharts
+- **Auth**: Firebase (Demo mode available)
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
+- **Export**: jsPDF + file-saver
+- **APIs**: CoinGecko (crypto prices), FakeStore (products)
+
+---
 
 ## 🚀 Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/bizinsight.git
+git clone https://github.com/UjjvxL/bizinsight.git
 cd bizinsight
 
 # Install dependencies
 npm install
 
-# Start development server
+# Run development server
 npm run dev
 ```
 
-Open **http://localhost:5173** and sign in with any email/password (demo mode).
+Open [http://localhost:5173](http://localhost:5173) — Login with demo credentials or any email/password in demo mode.
 
-## 🛠 Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| React 18 | UI Components |
-| Vite 8 | Build Tool |
-| Tailwind CSS v4 | Styling |
-| Recharts | Charts & Graphs |
-| React Router | Navigation |
-| Axios | API Calls |
-| Lucide React | Icons |
-| jsPDF | PDF Export |
-| Firebase | Authentication |
+---
 
 ## 📂 Project Structure
 
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── Logo.jsx         # Custom SVG logo
-│   ├── Header.jsx       # Search, themes, notifications
-│   ├── Sidebar.jsx      # Navigation with auth
-│   ├── KPICards.jsx      # Metric cards
-│   └── charts/          # Recharts visualizations
-├── context/             # React context providers
-│   ├── ThemeContext.jsx  # Beige/Light/Dark themes
-│   └── AuthContext.jsx   # Firebase auth wrapper
-├── pages/               # Route pages
-│   ├── Dashboard.jsx
-│   ├── MarketTrends.jsx
-│   ├── Inventory.jsx
-│   ├── SearchResults.jsx
-│   ├── Settings.jsx
-│   └── LoginPage.jsx
-├── services/            # API & utilities
-│   ├── api.js           # CoinGecko + FakeStore
-│   ├── export.js        # PDF/CSV generation
-│   └── firebase.js      # Firebase config
-└── index.css            # Theme variables & animations
+├── components/
+│   ├── Header.jsx          # Search bar, notifications, theme toggle
+│   ├── Sidebar.jsx         # Navigation menu
+│   ├── Onboarding.jsx      # 8-step guided tutorial
+│   ├── Logo.jsx            # Custom SVG logo
+│   └── charts/             # Crypto line, price bar, category pie
+├── pages/
+│   ├── Dashboard.jsx       # KPIs, AI insights, CSV upload, widgets
+│   ├── Portfolio.jsx       # Crypto portfolio tracker + price alerts
+│   ├── Compare.jsx         # Side-by-side coin comparison
+│   ├── Collaboration.jsx   # Share, comment, team management
+│   ├── Inventory.jsx       # Product CRUD + API data
+│   ├── MarketTrends.jsx    # Crypto market overview
+│   ├── Settings.jsx        # 8 tabs: profile to integrations
+│   └── LoginPage.jsx       # Firebase auth with demo mode
+├── services/
+│   ├── storage.js          # localStorage (Supabase-ready)
+│   ├── crypto.js           # Live prices + coin search
+│   ├── insights.js         # AI pattern analysis engine
+│   ├── sheets.js           # Google Sheets CSV parser
+│   ├── reports.js          # Email report generation
+│   ├── supabase.js         # Supabase scaffolding
+│   └── export.js           # PDF/CSV export
+└── context/
+    ├── ThemeContext.jsx     # Beige/Light/Dark themes
+    ├── CurrencyContext.jsx  # Multi-currency with auto-detect
+    └── AuthContext.jsx      # Firebase + demo mode
 ```
 
-## 🎨 Themes
+---
 
-The dashboard supports three beautiful themes that can be toggled from the header or Settings → Appearance:
+## 🔧 Configuration
 
-- **Beige** — Warm, elegant earth tones (default)
-- **Light** — Clean corporate blue
-- **Dark** — Sleek dark mode with purple accents
+### Enable Real Firebase Auth
+1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
+2. Update credentials in `src/services/firebase.js`
+3. Set `DEMO_MODE = false` in `src/context/AuthContext.jsx`
 
-## 🔐 Authentication Setup
+### Enable Supabase Backend
+1. Create a project at [supabase.com](https://supabase.com)
+2. Run the SQL schemas from `src/services/supabase.js`
+3. Set `USE_SUPABASE = true` and add your credentials
 
-The app runs in **Demo Mode** by default. To use real Firebase auth:
+---
 
-1. Create a project at [Firebase Console](https://console.firebase.google.com/)
-2. Enable Email/Password and Google sign-in
-3. Copy your config to `src/services/firebase.js`
-4. Set `DEMO_MODE = false` in `src/context/AuthContext.jsx`
+## 📝 License
 
-## 📦 Deployment
+MIT — Free for personal and commercial use.
 
-```bash
-npm run build
-```
+---
 
-Deploy the `dist/` folder to Vercel, Netlify, or any static host.
-
-## 📄 License
-
-MIT License — Feel free to use this for your portfolio or projects.
+**Built with ❤️ using React, Vite, and Recharts**
